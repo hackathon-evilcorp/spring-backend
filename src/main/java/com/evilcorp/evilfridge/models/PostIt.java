@@ -1,5 +1,7 @@
 package com.evilcorp.evilfridge.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -14,12 +16,14 @@ public class PostIt {
 
   private String type;
 
-  @ManyToOne
+  @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "fridge_id")
+  @JsonIgnore
   private Fridge fridge;
 
-  @ManyToOne
+  @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "user_model_id")
+  @JsonIgnore
   private UserModel creator;
 
   public PostIt() {

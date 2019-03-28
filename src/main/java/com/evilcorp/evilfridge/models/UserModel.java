@@ -1,5 +1,7 @@
 package com.evilcorp.evilfridge.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,10 +20,12 @@ public class UserModel {
   @Column(name = "user_email")
   private String email;
 
-  @ManyToMany(mappedBy = "users")
+  @ManyToMany(mappedBy = "users", cascade = {CascadeType.PERSIST, CascadeType.MERGE},
+      fetch = FetchType.LAZY)
+  @JsonIgnoreProperties("users")
   private List<Fridge> fridges = new ArrayList<>();
 
-  @OneToMany(mappedBy = "creator", cascade = CascadeType.ALL)
+  @OneToMany(mappedBy = "creator", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
   private List<PostIt> postIts = new ArrayList<>();
 
   public UserModel() {
