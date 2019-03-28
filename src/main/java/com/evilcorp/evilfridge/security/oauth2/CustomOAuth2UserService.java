@@ -1,5 +1,7 @@
 package com.evilcorp.evilfridge.security.oauth2;
 
+import com.evilcorp.evilfridge.exception.OAuth2AuthenticationProcessingException;
+import com.evilcorp.evilfridge.exception.ResourceNotFoundException;
 import com.evilcorp.evilfridge.models.UserModel;
 import com.evilcorp.evilfridge.repositories.UserModelRepository;
 import com.evilcorp.evilfridge.security.UserPrincipal;
