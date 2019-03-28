@@ -21,6 +21,9 @@ public class UserModel {
   @ManyToMany(mappedBy = "users")
   private List<Fridge> fridges = new ArrayList<>();
 
+  @OneToMany(mappedBy = "creator", cascade = CascadeType.ALL)
+  private List<PostIt> postIts = new ArrayList<>();
+
   public UserModel() {
   }
 
