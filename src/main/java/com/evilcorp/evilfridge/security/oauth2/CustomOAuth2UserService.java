@@ -2,6 +2,7 @@ package com.evilcorp.evilfridge.security.oauth2;
 
 import com.evilcorp.evilfridge.models.UserModel;
 import com.evilcorp.evilfridge.repositories.UserModelRepository;
+import com.evilcorp.evilfridge.security.UserPrincipal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.InternalAuthenticationServiceException;
 import org.springframework.security.core.AuthenticationException;
