@@ -20,7 +20,7 @@ public class UserModel {
   @Column(name = "user_email")
   private String email;
 
-  @ManyToMany(mappedBy = "users", cascade = {CascadeType.PERSIST, CascadeType.MERGE},
+  @ManyToMany(mappedBy = "users", cascade = {CascadeType.ALL},
       fetch = FetchType.LAZY)
   @JsonIgnoreProperties("users")
   private List<Fridge> fridges = new ArrayList<>();

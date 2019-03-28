@@ -20,7 +20,7 @@ public class Fridge {
   @OneToMany(mappedBy = "fridge", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
   private List<PostIt> postIts = new ArrayList<>();
 
-  @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE},
+  @ManyToMany(cascade = CascadeType.ALL,
       fetch = FetchType.LAZY)
   @JoinTable(name = "users_fridges",
       joinColumns = @JoinColumn(name = "fridge_id"),
