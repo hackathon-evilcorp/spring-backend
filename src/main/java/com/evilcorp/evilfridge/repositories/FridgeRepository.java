@@ -8,12 +8,12 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+
 @Repository
 public interface FridgeRepository extends JpaRepository<Fridge, Long> {
-    @Query(value = "SELECT f FROM fridge f" +
-            " INNER JOIN users_fridges ON users_fridges.fridge_id = f.id" +
-            " WHERE user_model_id = id",
-    nativeQuery = true
-    )
-    public List<Fridge> findByUserId(@Param("id") Long id);
+    String findByUserId = "SELECT * FROM fridge" +
+            " INNER JOIN users_fridges ON users_fridges.fridge_id = fridge.id" +
+            " WHERE user_model_id = (:userId)";
+    @Query(value = findByUserId, nativeQuery = true)
+    public List<Fridge> findByUserId(@Param("userId")Long userId);
 }
