@@ -1,5 +1,7 @@
 package com.evilcorp.evilfridge.config;
 
+import com.evilcorp.evilfridge.security.TokenAuthenticationFilter;
+import com.evilcorp.evilfridge.security.TokenProvider;
 import com.evilcorp.evilfridge.security.UnauthorizedHandler;
 import com.evilcorp.evilfridge.security.oauth2.CustomOAuth2UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,15 +28,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
   private CustomOAuth2UserService oauth2UserService;
   private OAuth2AuthenticationSuccessHandler oAuth2AuthenticationSuccessHandler;
   private OAuth2AuthenticationFailureHandler oAuth2AuthenticationFailureHandler;
+  private TokenProvider tokenProvider;
 
   @Autowired
   public SecurityConfig(
       CustomOAuth2UserService oauth2UserService,
       OAuth2AuthenticationSuccessHandler oAuth2AuthenticationSuccessHandler,
-      OAuth2AuthenticationFailureHandler oAuth2AuthenticationFailureHandler) {
+      OAuth2AuthenticationFailureHandler oAuth2AuthenticationFailureHandler,
+      TokenProvider tokenProvider) {
     this.oauth2UserService = oauth2UserService;
     this.oAuth2AuthenticationSuccessHandler = oAuth2AuthenticationSuccessHandler;
     this.oAuth2AuthenticationFailureHandler = oAuth2AuthenticationFailureHandler;
+    this.tokenProvider = tokenProvider;
   }
 
   @Override
@@ -69,7 +74,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
   CorsConfigurationSource corsConfigurationSource() {
     CorsConfiguration configuration = new CorsConfiguration();
     configuration.setAllowedOrigins(Arrays.asList("https://example.com"));
-    configuration.setAllowedMethods(Arrays.asList("GET","POST", "DELETE"));
+    configuration.setAllowedMethods(Arrays.asList("GET","POST", "DELETE", "PUT"));
     UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
     source.registerCorsConfiguration("/**", configuration);
     return source;
@@ -89,7 +94,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
   @Bean
   public TokenAuthenticationFilter tokenAuthenticationFilter() {
-    return new TokenAuthenticationFilter();
+    return new TokenAuthenticationFilter(oauth2UserService, tokenProvider);
   }
 
 }
