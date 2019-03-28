@@ -4,6 +4,7 @@ import com.evilcorp.evilfridge.security.TokenAuthenticationFilter;
 import com.evilcorp.evilfridge.security.TokenProvider;
 import com.evilcorp.evilfridge.security.UnauthorizedHandler;
 import com.evilcorp.evilfridge.security.oauth2.CustomOAuth2UserService;
+import com.evilcorp.evilfridge.security.oauth2.OAuth2AuthenticationFailureHandler;
 import com.evilcorp.evilfridge.security.oauth2.OAuth2AuthenticationSuccessHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -68,6 +69,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
           .and()
         .successHandler(oAuth2AuthenticationSuccessHandler)
         .failureHandler(oAuth2AuthenticationFailureHandler)
+          .and()
         .addFilterBefore(tokenAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
   }
 

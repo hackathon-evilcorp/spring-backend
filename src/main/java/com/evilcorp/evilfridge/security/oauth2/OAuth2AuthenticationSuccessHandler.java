@@ -43,6 +43,6 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
     } catch (JsonProcessingException ex) {
       logger.debug("Token conversion failed " + ex);
     }
-    return "Token generation failed!";
+    return "JWT generation failed!";
   }
 }
