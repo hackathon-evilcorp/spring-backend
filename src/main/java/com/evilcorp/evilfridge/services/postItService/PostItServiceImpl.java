@@ -34,11 +34,19 @@ public class PostItServiceImpl implements PostItService{
 
   @Override
   public boolean savePostIt(PostIt postIt) {
-    return false;
+    if(postItRepository.findById(postIt.getId()).isPresent()) {
+      return false;
+    }
+    postItRepository.save(postIt);
+    return true;
   }
 
   @Override
   public boolean deletePostIt(Long postItId) {
+    if(postItRepository.findById(postItId).isPresent()) {
+      postItRepository.delete(postItRepository.findById(postItId).get());
+      return true;
+    }
     return false;
   }
 }
