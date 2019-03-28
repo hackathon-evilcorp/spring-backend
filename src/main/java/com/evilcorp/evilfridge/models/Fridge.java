@@ -20,7 +20,7 @@ public class Fridge {
   @OneToMany(mappedBy = "fridge", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
   private List<PostIt> postIts = new ArrayList<>();
 
-  @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE},
+  @ManyToMany(cascade = CascadeType.ALL,
       fetch = FetchType.LAZY)
   @JoinTable(name = "users_fridges",
       joinColumns = @JoinColumn(name = "fridge_id"),
@@ -33,11 +33,11 @@ public class Fridge {
   public Fridge() {
   }
 
-  public long getId() {
+  public Long getId() {
     return id;
   }
 
-  public void setId(long id) {
+  public void setId(Long id) {
     this.id = id;
   }
 
