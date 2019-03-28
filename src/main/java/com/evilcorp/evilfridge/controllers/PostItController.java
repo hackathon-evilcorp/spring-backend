@@ -28,11 +28,11 @@ public class PostItController {
 
     @PostMapping("/api/postits")
     public ResponseEntity createPostIt(PostIt postIt) {
-        return new ResponseEntity(HttpStatus.OK);
+        return new ResponseEntity(postItService.savePostIt(postIt)? HttpStatus.OK : HttpStatus.BAD_REQUEST);
     }
 
     @DeleteMapping("/api/postits")
     public ResponseEntity deletePostIt(@RequestParam ("postitid") Long postitId) {
-        return new ResponseEntity(HttpStatus.FORBIDDEN);
+        return new ResponseEntity(postItService.deletePostIt(postitId)? HttpStatus.OK : HttpStatus.BAD_REQUEST);
     }
 }
