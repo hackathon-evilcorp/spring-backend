@@ -54,12 +54,14 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService implements
       return processOAuth2User(oAuth2UserRequest, oAuth2User);
     } catch (AuthenticationException ex) {
       throw ex;
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
       throw new InternalAuthenticationServiceException(ex.getMessage(), ex.getCause());
     }
   }
 
   private OAuth2User processOAuth2User(OAuth2UserRequest oAuth2UserRequest, OAuth2User oAuth2User) {
+    UserModel user;
     OAuth2UserInfo oAuth2UserInfo = OAuth2UserInfoFactory.getOAuth2UserInfo(
         oAuth2UserRequest.getClientRegistration().getRegistrationId(),
         oAuth2User.getAttributes());
@@ -68,7 +70,6 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService implements
     }
 
     Optional<UserModel> optionalUser = userRepository.findByEmail(oAuth2UserInfo.getEmail());
-    UserModel user;
     user = optionalUser.orElse(registerNewUser(oAuth2UserInfo));
     return UserPrincipal.create(user, oAuth2User.getAttributes());
   }

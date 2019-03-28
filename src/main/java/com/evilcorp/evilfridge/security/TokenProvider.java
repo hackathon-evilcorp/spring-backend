@@ -16,7 +16,7 @@ public class TokenProvider {
   private final long tokenExpiration;
 
   public TokenProvider() {
-    this.secretKey = System.getenv("EVILFRIDGE_SECRETKEY");
+    this.secretKey = System.getenv("FRIDGEDOOR_SECRETKEY");
     this.tokenExpiration = 86400000;
   }
 
