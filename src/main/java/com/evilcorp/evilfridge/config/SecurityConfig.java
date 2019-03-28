@@ -4,6 +4,7 @@ import com.evilcorp.evilfridge.security.TokenAuthenticationFilter;
 import com.evilcorp.evilfridge.security.TokenProvider;
 import com.evilcorp.evilfridge.security.UnauthorizedHandler;
 import com.evilcorp.evilfridge.security.oauth2.CustomOAuth2UserService;
+import com.evilcorp.evilfridge.security.oauth2.OAuth2AuthenticationSuccessHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
