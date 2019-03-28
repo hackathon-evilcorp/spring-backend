@@ -1,5 +1,7 @@
 package com.evilcorp.evilfridge.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,18 +20,19 @@ public class UserModel {
   @Column(name = "user_email")
   private String email;
 
-  @ManyToMany(mappedBy = "users")
+  @ManyToMany(mappedBy = "users", cascade = {CascadeType.ALL},
+      fetch = FetchType.LAZY)
+  @JsonIgnoreProperties("users")
   private List<Fridge> fridges = new ArrayList<>();
+
+  @OneToMany(mappedBy = "creator", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+  private List<PostIt> postIts = new ArrayList<>();
 
   public UserModel() {
   }
 
   public long getId() {
     return id;
-  }
-
-  public void setId(long id) {
-    this.id = id;
   }
 
   public String getName() {
@@ -54,5 +57,17 @@ public class UserModel {
 
   public void setFridges(List<Fridge> fridges) {
     this.fridges = fridges;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
+  }
+
+  public List<PostIt> getPostIts() {
+    return postIts;
+  }
+
+  public void setPostIts(List<PostIt> postIts) {
+    this.postIts = postIts;
   }
 }
