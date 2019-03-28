@@ -26,4 +26,13 @@ public class UserModelController {
       return new ResponseEntity(userModelService.findByUserId(id).getFridges(), HttpStatus.OK);
     }
   }
+
+  @GetMapping("/api/user/postits")
+  public ResponseEntity getUserPostIts (@RequestParam Long id) {
+    if (id == null) {
+      return new ResponseEntity(HttpStatus.BAD_REQUEST);
+    } else {
+      return new ResponseEntity(userModelService.findByUserId(id).getPostIts(), HttpStatus.OK);
+    }
+  }
 }

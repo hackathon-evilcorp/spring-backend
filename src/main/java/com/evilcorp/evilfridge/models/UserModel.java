@@ -31,10 +31,6 @@ public class UserModel {
     return id;
   }
 
-  public void setId(long id) {
-    this.id = id;
-  }
-
   public String getName() {
     return name;
   }
@@ -57,5 +53,17 @@ public class UserModel {
 
   public void setFridges(List<Fridge> fridges) {
     this.fridges = fridges;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
+  }
+
+  public List<PostIt> getPostIts() {
+    return postIts;
+  }
+
+  public void setPostIts(List<PostIt> postIts) {
+    this.postIts = postIts;
   }
 }
