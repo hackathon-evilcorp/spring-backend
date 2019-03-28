@@ -76,3 +76,41 @@ No return (HttpStatus.OK)
 @RequestParam Long id
 No return (HttpStatus.OK)
 ~~~
+
+# Kiki
+## FridgeController
+~~~
+@GetMapping("/api/fridges")
+@RequestParam ("userId") Long userId
+~~~
+
+~~~
+@GetMapping("/api/fridges/{fridgeId}")
+@PathVariable ("fridgeId") Long fridgeId
+~~~
+
+~~~
+@PostMapping("/api/fridges")
+Fridge fridge
+~~~
+
+~~~
+@DeleteMapping("/api/fridges/{fridgeId}")
+@PathVariable ("fridgeId") Long fridgeId
+~~~
+## PostItController
+~~~
+@GetMapping("/api/postits")
+@RequestParam(value = "fridgeId", required = false) Long fridgeId,
+@RequestParam(value = "userId", required = false) Long userId)
+~~~
+
+~~~
+@PostMapping("/api/postits")
+PostIt postIt
+~~~
+
+~~~
+@DeleteMapping("/api/postits")
+@RequestParam("postitid") Long postitId
+~~~
