@@ -2,6 +2,7 @@ package com.evilcorp.evilfridge.models;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "user_model")
@@ -9,7 +10,7 @@ public class UserModel {
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
-  private long id;
+  private Long id;
 
   @Column(name = "user_name")
   private String name;
@@ -17,11 +18,8 @@ public class UserModel {
   @Column(name = "user_email")
   private String email;
 
-  @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-  @JoinTable(name = "users_fridges",
-      joinColumns = {@JoinColumn(name = "user_model_id")},
-      inverseJoinColumns = {@JoinColumn(name = "fridge_id")})
-  private ArrayList<Fridge> fridges;
+  @ManyToMany(mappedBy = "users")
+  private List<Fridge> fridges = new ArrayList<>();
 
   public UserModel() {
   }
@@ -50,11 +48,11 @@ public class UserModel {
     this.email = email;
   }
 
-  public ArrayList<Fridge> getFridges() {
+  public List<Fridge> getFridges() {
     return fridges;
   }
 
-  public void setFridges(ArrayList<Fridge> fridges) {
+  public void setFridges(List<Fridge> fridges) {
     this.fridges = fridges;
   }
 }

@@ -1,9 +1,8 @@
 package com.evilcorp.evilfridge.models;
 
-import org.springframework.data.annotation.Id;
-
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "fridge")
@@ -11,17 +10,19 @@ public class Fridge {
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
-  @Column(name = "id")
-  private long id;
+  private Long id;
 
   @Column(name = "fridge_name")
   private String name;
 
   @OneToMany(mappedBy = "fridge", cascade = CascadeType.ALL)
-  private ArrayList<PostIt> postIts;
+  private List<PostIt> postIts = new ArrayList<>();
 
-  @ManyToMany(mappedBy = "fridges")
-  private ArrayList<String> userList;
+  @ManyToMany(cascade = CascadeType.ALL)
+  @JoinTable(name = "users_fridges",
+      joinColumns = {@JoinColumn(name = "fridge_id")},
+      inverseJoinColumns = {@JoinColumn(name = "user_model_id")})
+  private List<UserModel> users = new ArrayList<>();
 
   private String admin;
 
@@ -44,20 +45,20 @@ public class Fridge {
     this.name = name;
   }
 
-  public ArrayList<PostIt> getPostIts() {
+  public List<PostIt> getPostIts() {
     return postIts;
   }
 
-  public void setPostIts(ArrayList<PostIt> postIts) {
+  public void setPostIts(List<PostIt> postIts) {
     this.postIts = postIts;
   }
 
-  public ArrayList<String> getUserList() {
-    return userList;
+  public List<UserModel> getUsers() {
+    return users;
   }
 
-  public void setUserList(ArrayList<String> userList) {
-    this.userList = userList;
+  public void setUsers(List<UserModel> users) {
+    this.users = users;
   }
 
   public String getAdmin() {

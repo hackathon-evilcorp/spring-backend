@@ -3,11 +3,12 @@ package com.evilcorp.evilfridge.models;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "postit")
 public class PostIt {
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
-  private long id;
+  private Long id;
 
   private String creator;
 
@@ -16,7 +17,7 @@ public class PostIt {
   private String type;
 
   @ManyToOne
-  @JoinColumn
+  @JoinColumn(name = "fridge_id")
   private Fridge fridge;
 
   public PostIt() {
