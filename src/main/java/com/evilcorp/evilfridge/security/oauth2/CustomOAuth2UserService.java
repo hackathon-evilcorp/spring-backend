@@ -1,5 +1,6 @@
 package com.evilcorp.evilfridge.security.oauth2;
 
+import com.evilcorp.evilfridge.models.UserModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
