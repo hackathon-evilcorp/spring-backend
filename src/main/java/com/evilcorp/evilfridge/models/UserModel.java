@@ -31,8 +31,12 @@ public class UserModel {
   public UserModel() {
   }
 
-  public long getId() {
+  public Long getId() {
     return id;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
   }
 
   public String getName() {
@@ -57,10 +61,6 @@ public class UserModel {
 
   public void setFridges(List<Fridge> fridges) {
     this.fridges = fridges;
-  }
-
-  public void setId(Long id) {
-    this.id = id;
   }
 
   public List<PostIt> getPostIts() {
