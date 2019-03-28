@@ -1,12 +1,11 @@
 package com.evilcorp.evilfridge.controllers;
 
+import com.evilcorp.evilfridge.models.PostIt;
 import com.evilcorp.evilfridge.services.postItService.PostItService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class PostItController {
@@ -25,5 +24,15 @@ public class PostItController {
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity(HttpStatus.OK);
+    }
+
+    @PostMapping("/api/postits")
+    public ResponseEntity createPostIt(PostIt postIt) {
+        return new ResponseEntity(HttpStatus.OK);
+    }
+
+    @DeleteMapping("/api/postits")
+    public ResponseEntity deletePostIt(@RequestParam ("postitid") Long postitId) {
+        return new ResponseEntity(HttpStatus.FORBIDDEN);
     }
 }
