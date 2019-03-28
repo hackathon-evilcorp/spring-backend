@@ -9,7 +9,7 @@ import java.util.Optional;
 
 @Repository
 public interface PostItRepository extends JpaRepository<PostIt, Long> {
-    public List<PostIt> findByUserId(Long userId);
+    public List<PostIt> findByCreator_Id(Long userId);
     public List<PostIt> findByFridgeId(Long fridgeId);
-    public List<PostIt> findByUserIdAndFridgeId(Long userId, Long fridgeId);
+    public List<PostIt> findByCreator_IdAndFridgeId(Long userId, Long fridgeId);
 }

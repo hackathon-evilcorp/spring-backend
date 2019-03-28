@@ -19,7 +19,7 @@ public class PostItServiceImpl implements PostItService{
 
   @Override
   public List<PostIt> getPostItsOfUser(Long userId) {
-    return postItRepository.findByUserId(userId);
+    return postItRepository.findByCreator_Id(userId);
   }
 
   @Override
@@ -29,7 +29,7 @@ public class PostItServiceImpl implements PostItService{
 
   @Override
   public List<PostIt> getPostItsOfUserAndFridge(Long userId, Long fridgeId) {
-    return postItRepository.findByUserIdAndFridgeId(userId, fridgeId);
+    return postItRepository.findByCreator_IdAndFridgeId(userId, fridgeId);
   }
 
   @Override

@@ -10,8 +10,6 @@ public class PostIt {
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
 
-  private String creator;
-
   private String content;
 
   private String type;
@@ -19,6 +17,10 @@ public class PostIt {
   @ManyToOne
   @JoinColumn(name = "fridge_id")
   private Fridge fridge;
+
+  @ManyToOne
+  @JoinColumn(name = "user_model_id")
+  private UserModel creator;
 
   public PostIt() {
   }
@@ -31,11 +33,11 @@ public class PostIt {
     this.id = id;
   }
 
-  public String getCreator() {
+  public UserModel getCreator() {
     return creator;
   }
 
-  public void setCreator(String creator) {
+  public void setCreator(UserModel creator) {
     this.creator = creator;
   }
 
