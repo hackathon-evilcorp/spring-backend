@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 public class PostItController {
-    PostItService postItService;
+    private PostItService postItService;
 
     @Autowired
     public PostItController(PostItService postItService) {
