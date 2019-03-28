@@ -19,17 +19,17 @@ public class PostItServiceImpl implements PostItService{
 
   @Override
   public List<PostIt> getPostItsOfUser(Long userId) {
-    return null;
+    return postItRepository.findByUserId(userId);
   }
 
   @Override
   public List<PostIt> getPostItsOfFridge(Long fridgeId) {
-    return null;
+    return postItRepository.findByFridgeId(fridgeId);
   }
 
   @Override
   public List<PostIt> getPostItsOfUserAndFridge(Long userId, Long fridgeId) {
-    return null;
+    return postItRepository.findByUserIdAndFridgeId(userId, fridgeId);
   }
 
   @Override
