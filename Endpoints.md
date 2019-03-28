@@ -1,3 +1,5 @@
+# Duffy:
+~~~
 @GetMapping("/api/user/fridges")
 @RequestParam Long id
 [
@@ -16,8 +18,8 @@
         "admin": "devil"
     }
 ]
-
-
+~~~
+~~~
 @GetMapping("/api/user/postits")
 @RequestParam Long id
 [
@@ -27,9 +29,11 @@
         "type": "posztit"
     }
 ]
+~~~
 
 
-(Erről még beszélnünk kell!!!!! - Duffy)
+> *(Erről még beszélnünk kell!!!!! - Duffy)*
+~~~
 @GetMapping("/api/user")
 @RequestParam Long id
 {
@@ -58,14 +62,17 @@
         }
     ]
 }
+~~~
 
-
-(Erről is még!!!! - Duffy)
+> *(Erről is még!!!! - Duffy)*
+~~~
 @PostMapping("/api/user")
 UserModel userModel
 No return (HttpStatus.OK)
+~~~
 
-
+~~~
 @DeleteMapping("/api/user")
 @RequestParam Long id
 No return (HttpStatus.OK)
+~~~
