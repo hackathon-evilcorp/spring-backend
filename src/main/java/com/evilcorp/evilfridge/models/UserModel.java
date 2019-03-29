@@ -26,6 +26,7 @@ public class UserModel {
   private List<Fridge> fridges = new ArrayList<>();
 
   @OneToMany(mappedBy = "creator", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+  @JsonIgnoreProperties("creator")
   private List<PostIt> postIts = new ArrayList<>();
 
   public UserModel() {

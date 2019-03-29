@@ -18,13 +18,8 @@ public class FridgeServiceImpl implements FridgeService{
   }
 
   @Override
-  public List<Fridge> getFridgesOfUser(Long userId) {
-    return fridgeRepository.findByUserId(userId);
-  }
-
-  @Override
   public Fridge getFridgeById(Long fridgeId) {
-    return fridgeRepository.getOne(fridgeId);
+    return fridgeRepository.findById(fridgeId).orElse(null);
   }
 
   @Override
