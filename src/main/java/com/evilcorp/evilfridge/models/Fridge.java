@@ -8,6 +8,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "fridge")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Fridge {
 
   @Id
@@ -18,6 +19,7 @@ public class Fridge {
   private String name;
 
   @OneToMany(mappedBy = "fridge", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+  @JsonIgnoreProperties("fridge")
   private List<PostIt> postIts = new ArrayList<>();
 
   @ManyToMany(cascade = CascadeType.ALL,
