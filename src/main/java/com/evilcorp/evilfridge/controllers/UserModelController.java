@@ -46,7 +46,7 @@ public class UserModelController {
   }
 
   @PostMapping("/api/user")
-  public ResponseEntity saveUser(UserModel userModel) {
+  public ResponseEntity saveUser(@RequestBody UserModel userModel) {
     if (userModel == null) {
       return new ResponseEntity(HttpStatus.BAD_REQUEST);
     } else {
