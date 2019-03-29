@@ -17,8 +17,8 @@ public class FridgeController {
         this.fridgeService = fridgeService;
     }
 
-    @GetMapping("/api/fridges")
-    public ResponseEntity getFridge(@RequestParam Long id) {
+    @GetMapping("/api/fridges/{fridgeId}")
+    public ResponseEntity getFridge(@PathVariable("fridgeId") Long id) {
         if(id == null || id == 0) {
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
         }
