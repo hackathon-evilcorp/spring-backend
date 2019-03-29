@@ -41,7 +41,7 @@ public class TokenProvider {
         .setSigningKey(secretKey)
         .parseClaimsJws(token)
         .getBody();
-    return Long.parseLong(claims.getSubject());
+    return Long.parseLong(claims.getId());
   }
 
   public boolean validateToken(String authToken) {

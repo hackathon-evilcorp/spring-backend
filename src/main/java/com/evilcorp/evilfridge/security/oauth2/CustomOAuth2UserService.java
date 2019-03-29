@@ -35,8 +35,10 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService implements
   @Override
   public UserDetails loadUserByUsername(String email)
       throws UsernameNotFoundException {
-    UserModel user = userRepository.findByEmail(email)
-        .orElseThrow(() -> new UsernameNotFoundException("User not found with email : " + email));
+    UserModel user = userRepository.findByEmail(email);
+    if(user == null){
+      throw new UsernameNotFoundException("User not found with email : " + email);
+    }
     return UserPrincipal.create(user);
   }
 
@@ -68,8 +70,12 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService implements
     if(StringUtils.isEmpty(oAuth2UserInfo.getEmail())) {
       throw new OAuth2AuthenticationProcessingException("Email not found from OAuth2 provider");
     }
-    Optional<UserModel> optionalUser = userRepository.findByEmail(oAuth2UserInfo.getEmail());
-    user = optionalUser.orElse(registerNewUser(oAuth2UserInfo));
+    UserModel optionalUser = userRepository.findByEmail(oAuth2UserInfo.getEmail());
+    if(optionalUser != null){
+      user = optionalUser;
+    } else {
+      user = registerNewUser(oAuth2UserInfo);
+    }
     return UserPrincipal.create(user, oAuth2User.getAttributes());
   }
 
@@ -77,7 +83,9 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService implements
     UserModel user = new UserModel();
     user.setName(oAuth2UserInfo.getName());
     user.setEmail(oAuth2UserInfo.getEmail());
-    return userRepository.save(user);
+    return
+//        user;
+        userRepository.save(user);
   }
 
 }
