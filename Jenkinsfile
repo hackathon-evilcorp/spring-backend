@@ -37,17 +37,18 @@ pipeline {
        sh './gradlew test'
      }
    }
-   stage('Deploy DEV docker image') {
+   stage('Deploy MASTER docker image') {
      when {
-       branch 'dev'
+       branch 'master'
      }
      steps {
        script {
-         dockerImage = docker.build registry + ":dev"
+         dockerImage = docker.build registry + ":$BUILD_NUMBER"
        }
        script {
          docker.withRegistry( '', registryCredential ) {
-           dockerImage.push('dev')
+            dockerImage.push()
+            dockerImage.push('latest')
          }
        }
      }
