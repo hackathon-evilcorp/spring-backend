@@ -38,7 +38,7 @@ public class PostItController {
     }
 
     @PostMapping("/api/postits")
-    public ResponseEntity createPostIt(PostIt postIt) {
+    public ResponseEntity createPostIt(@RequestBody PostIt postIt) {
         return new ResponseEntity(postItService.savePostIt(postIt) ? HttpStatus.OK : HttpStatus.BAD_REQUEST);
     }
 

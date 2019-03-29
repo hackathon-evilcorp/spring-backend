@@ -26,7 +26,7 @@ public class FridgeController {
     }
 
     @PostMapping("/api/fridges")
-    public ResponseEntity createFridge(Fridge fridge) {
+    public ResponseEntity createFridge(@RequestBody Fridge fridge) {
         return new ResponseEntity(fridgeService.saveFridge(fridge)? HttpStatus.OK : HttpStatus.BAD_REQUEST);
     }
 
