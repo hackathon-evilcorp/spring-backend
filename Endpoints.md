@@ -82,6 +82,7 @@ No return (HttpStatus.OK)
 ~~~
 @GetMapping("/api/fridges")
 @RequestParam ("userId") Long userId
+Json elvileg ugyan az, mint ("/api/user/fridges")
 ~~~
 
 ~~~
@@ -103,14 +104,18 @@ Fridge fridge
 @GetMapping("/api/postits")
 @RequestParam(value = "fridgeId", required = false) Long fridgeId,
 @RequestParam(value = "userId", required = false) Long userId)
+[{"id":1,"content":"tessék duffy!","type":"posztit"}]
+Vagy ha valamely param hiányzik, semmi & bad request;
 ~~~
 
 ~~~
 @PostMapping("/api/postits")
 PostIt postIt
+No return (HttpStatus.OK)
 ~~~
 
 ~~~
 @DeleteMapping("/api/postits")
 @RequestParam("postitid") Long postitId
+No return (HttpStatus.OK)
 ~~~
