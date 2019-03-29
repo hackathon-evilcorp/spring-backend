@@ -80,8 +80,8 @@ No return (HttpStatus.OK)
 # Kiki
 ## FridgeController
 ~~~
-@GetMapping("/api/fridges/{fridgeId}")
-@PathVariable ("fridgeId") Long fridgeId
+@GetMapping("/api/fridges)
+@RequestParam Long Id
 ~~~
 
 ~~~
