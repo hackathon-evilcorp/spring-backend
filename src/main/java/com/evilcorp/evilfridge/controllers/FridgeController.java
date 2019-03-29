@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin
 @RestController
 public class FridgeController {
     private FridgeService fridgeService;
@@ -17,19 +18,11 @@ public class FridgeController {
     }
 
     @GetMapping("/api/fridges")
-    public ResponseEntity getFridgesOfUser(@RequestParam ("userId") Long userId) {
-        if(userId == null || userId == 0) {
+    public ResponseEntity getFridge(@RequestParam Long id) {
+        if(id == null || id == 0) {
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity(fridgeService.getFridgesOfUser(userId), HttpStatus.OK);
-    }
-
-    @GetMapping("/api/fridges/{fridgeId}")
-    public ResponseEntity getFridge(@PathVariable ("fridgeId") Long fridgeId) {
-        if(fridgeId == null || fridgeId == 0) {
-            return new ResponseEntity(HttpStatus.BAD_REQUEST);
-        }
-        return new ResponseEntity(fridgeService.getFridgeById(fridgeId), HttpStatus.OK);
+        return new ResponseEntity(fridgeService.getFridgeById(id), HttpStatus.OK);
     }
 
     @PostMapping("/api/fridges")
