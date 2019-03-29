@@ -8,10 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 @Component
 public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
@@ -27,13 +29,12 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
   public void onAuthenticationSuccess(HttpServletRequest request,
                                       HttpServletResponse response,
                                       Authentication authentication) throws IOException {
-    response.getWriter().write(getTokenToResponseBody(authentication));
-    getRedirectStrategy().sendRedirect(request, response, determineTargetUrl(request));
     clearAuthenticationAttributes(request);
-  }
-
-  private String determineTargetUrl(HttpServletRequest request) {
-    return request.getRequestURI();
+    PrintWriter responseWriter = response.getWriter();
+    response.setContentType("application/json");
+    response.setCharacterEncoding("UTF-8");
+    responseWriter.print(getTokenToResponseBody(authentication));
+    responseWriter.flush();
   }
 
   private String getTokenToResponseBody(Authentication authentication){
